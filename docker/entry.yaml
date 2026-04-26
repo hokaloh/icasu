@@ -1,0 +1,19 @@
+name: icasu
+
+services:
+  database:
+    image: postgres:16
+    container_name: icasu_postgres
+    # env_file:
+    #   - ./../.env
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./postgres/backups:/backups_icasu
+      - postgres:/var/lib/postgresql/icasu_data
+volumes:
+  postgres:
